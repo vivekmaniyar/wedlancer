@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -98,6 +99,35 @@ namespace WedlancerAPI.Controllers
                 }).FirstOrDefaultAsync();
 
             return portfolio;
+        }
+
+        [Authorize("Admin")]
+        [HttpPut("changeaccountstatus")]
+        public async Task<IActionResult> changeaccountstatus(string username)
+        {
+            var profile = await _context.Profiles
+                .Where(p => p.Username == username)
+                .FirstOrDefaultAsync();
+
+
+            if(profile == null)
+            {
+                return BadRequest(new { Status = "Error", Message = "User not found!" });
+            }
+
+            if(profile.IsActive)
+            {
+                profile.IsActive = false;
+            }
+            else
+            {
+                profile.IsActive = true;
+            }
+
+            _context.Entry(profile).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return Ok(new {Status = "Success", Message = "Profile Status Changed!" });
         }
     }
 }
