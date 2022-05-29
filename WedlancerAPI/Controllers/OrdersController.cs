@@ -62,6 +62,33 @@ namespace WedlancerAPI.Controllers
             return orders;
         }
 
+        [Authorize("Freelancer")]
+        [HttpGet("freelancerorders")]
+        public async Task<ActionResult<List<orderdetails>>> freelancerorders(string username)
+        {
+            var profile = await _context.Profiles.Where(p => p.Username == username)
+                .FirstOrDefaultAsync();
+
+            if (profile == null)
+            {
+                return BadRequest(new { Status = "Error", Message = "User not found!" });
+            }
+
+            var orders = await _context.Orders.Include(o => o.Package).Include(o => o.Freelancer)
+                .Where(p => p.FreelancerId == profile.ProfileId)
+                .Select(o => new orderdetails
+                {
+                    OrderId = o.OrderId,
+                    PaymentId = o.PaymentId,
+                    Amount = o.Amount,
+                    package = o.Package.PackageName,
+                    freelancerusername = o.Freelancer.Username,
+                    status = o.Status
+                }).ToListAsync();
+
+            return orders;
+        }
+
         // PUT: api/Orders/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

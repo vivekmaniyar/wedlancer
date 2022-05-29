@@ -2,6 +2,7 @@
 {
     public class userdata
     {
+        public string ProfilePicture { get; set; }
         public string UserName { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
@@ -11,6 +12,8 @@
         public string state { get; set; }
 
         public string category { get; set; }
+
+        public bool IsActive { get; set; }
 
 
     }
