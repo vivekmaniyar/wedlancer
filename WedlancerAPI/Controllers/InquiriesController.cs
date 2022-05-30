@@ -10,7 +10,6 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
-    [Authorize("Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class InquiriesController : ControllerBase
@@ -23,6 +22,7 @@ namespace WedlancerAPI.Controllers
         }
 
         // GET: api/Inquiries
+        [Authorize("Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Inquiries>>> GetInquiries()
         {
@@ -30,6 +30,7 @@ namespace WedlancerAPI.Controllers
         }
 
         // GET: api/Inquiries/5
+        [Authorize("Admin")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Inquiries>> GetInquiries(int id)
         {
@@ -46,6 +47,7 @@ namespace WedlancerAPI.Controllers
         // PUT: api/Inquiries/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize("Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutInquiries(int id, string status)
         {
@@ -92,6 +94,7 @@ namespace WedlancerAPI.Controllers
         }
 
         // DELETE: api/Inquiries/5
+        [Authorize("Admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Inquiries>> DeleteInquiries(int id)
         {

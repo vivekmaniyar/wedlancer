@@ -93,6 +93,58 @@ namespace WedlancerAPI.Controllers
             return userprofiles;
         }
 
+        [HttpGet("searchprofile")]
+        public async Task<ActionResult<List<userdata>>> searchprofile(string username)
+        {
+            var profile = await _context.Profiles.Where(p => p.Username == username && p.IsActive == true)
+                .Select(p => new userdata
+                {
+                    ProfilePicture = p.ProfilePicture,
+                    firstname = p.FirstName,
+                    lastname = p.LastName,
+                    UserName = p.Username,
+                    category = p.Category.CategoryName,
+                    city = p.City.CityName,
+                    state = p.City.State.StateName,
+                    Email = p.Email,
+                    phonenumber = p.PhoneNumber,
+                    IsActive = p.IsActive
+                }).ToListAsync();
+
+            if(profile == null)
+            {
+                return BadRequest(new { Status = "Error", Message = "User not found!" });
+            }
+
+            return profile;
+        }
+
+        [HttpGet("profiledetails")]
+        public async Task<ActionResult<userdata>> profiledetails(string username)
+        {
+            var profile = await _context.Profiles.Where(p => p.Username == username)
+                .Select(p => new userdata
+                {
+                    ProfilePicture = p.ProfilePicture,
+                    firstname = p.FirstName,
+                    lastname = p.LastName,
+                    UserName = p.Username,
+                    city = p.City.CityName,
+                    state = p.City.State.StateName,
+                    Email = p.Email,
+                    phonenumber = p.PhoneNumber,
+                    category = p.Category.CategoryName,
+                    IsActive = p.IsActive
+                }).FirstOrDefaultAsync();
+
+            if(profile == null)
+            {
+                return BadRequest(new { Status = "Error", Message = "User not found!" });
+            }
+
+            return profile;
+        }
+
         [HttpGet("searchportfolio")]
         public async Task<ActionResult<List<freelancerportfolio>>> searchportfolio(string username)
         {
@@ -111,6 +163,60 @@ namespace WedlancerAPI.Controllers
                 }).ToListAsync();
 
             return portfolio;
+        }
+
+        [HttpPut("updateprofile")]
+        public async Task<IActionResult> updateprofile(string username,userdata profile)
+        {
+            if(profile.UserName != username)
+            {
+                return BadRequest();
+            }
+
+            var city = await _context.Cities.Where(c => c.CityName == profile.city)
+                .FirstOrDefaultAsync();
+
+            if(city == null)
+            {
+                return BadRequest(new { Status = "Error", Message = "City not found!" });
+            }
+
+            var state = await _context.States.Where(s => s.StateName == profile.state)
+                .FirstOrDefaultAsync();
+
+            if(state == null)
+            {
+                return BadRequest(new { Status = "Error", Message = "State not found!" });
+            }
+
+            var category = await _context.Categories.Where(c => c.CategoryName == profile.category)
+                .FirstOrDefaultAsync();
+
+            if(category == null)
+            {
+                return BadRequest(new { Status = "Error", Message = "category not found!" });
+            }
+
+            var Profile = await _context.Profiles.Where(p => p.Username == username)
+                .FirstOrDefaultAsync();
+
+            if(Profile == null)
+            {
+                return BadRequest(new { Status = "Error", Message = "User not found!" });
+            }
+
+            Profile.FirstName = profile.firstname;
+            Profile.LastName = profile.lastname;
+            Profile.ProfilePicture = profile.ProfilePicture;
+            Profile.PhoneNumber = profile.phonenumber;
+            Profile.Email = profile.Email;
+            Profile.CityId = city.CityId;
+            Profile.CategoryId = category.CategoryId;
+
+            _context.Entry(Profile).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Status = "Success", Message = "Profile details Changed!" });
         }
 
         [Authorize("Admin")]
