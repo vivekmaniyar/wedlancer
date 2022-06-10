@@ -110,6 +110,9 @@ namespace WedlancerAPI.Controllers
         [HttpGet("availableprofiles")]
         public async Task<ActionResult<List<userdata>>> availableprofiles(DateTime startdate, DateTime enddate, string category, string city)
         {
+            UserRoles role = await _context.UserRoles.Where(r => r.Role.RoleName == "Freelancer")
+                            .FirstOrDefaultAsync();
+
             var bookings = _context.Bookings.Where(
                 b => b.StartDate.Date >= startdate.Date && b.EndDate.Date <= enddate.Date)
                 .Select(p => p.ProfileId).ToArray();
@@ -125,6 +128,7 @@ namespace WedlancerAPI.Controllers
                                 && p.IsActive == true 
                                 && p.CityId == City.CityId
                                 && p.CategoryId == Category.CategoryId
+                                && p.UserRoles.FirstOrDefault().RoleId == role.RoleId
                                 select new userdata
                                 {
                                     Id = p.ProfileId,
