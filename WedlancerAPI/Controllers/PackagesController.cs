@@ -47,18 +47,14 @@ namespace WedlancerAPI.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [Authorize("Admin")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPackages(int id, string packagename, string description, double price)
+        public async Task<IActionResult> PutPackages(int id, Packages package)
         {
-            var packages = await _context.Packages.FindAsync(id);
 
-            if (id != packages.PackageId)
+            if (id != package.PackageId)
             {
                 return BadRequest();
             }
-            packages.PackageName = packagename;
-            packages.Description = description;
-            packages.Price = price;
-            _context.Entry(packages).State = EntityState.Modified;
+            _context.Entry(package).State = EntityState.Modified;
 
             try
             {
@@ -84,13 +80,9 @@ namespace WedlancerAPI.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [Authorize("Admin")]
         [HttpPost]
-        public async Task<ActionResult<Packages>> PostPackages(string packagename,string description,double price)
+        public async Task<ActionResult<Packages>> PostPackages(Packages package)
         {
-            Packages packages = new Packages();
-            packages.PackageName = packagename;
-            packages.Description = description;
-            packages.Price = price;
-            _context.Packages.Add(packages);
+            _context.Packages.Add(package);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPackages", new { Status="Success", Message="Package successfully added!" });

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WedlancerAPI.Authorize;
 using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
@@ -191,7 +192,6 @@ namespace WedlancerAPI.Controllers
             return reviews;
         }
 
-        [Authorize("Freelancer")]
         [HttpGet("freelancerreviews")]
         public async Task<ActionResult<IEnumerable<userreview>>> freelancerreviews(string username)
         {

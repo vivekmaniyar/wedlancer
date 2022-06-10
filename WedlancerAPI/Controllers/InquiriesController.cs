@@ -87,10 +87,11 @@ namespace WedlancerAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Inquiries>> PostInquiries(Inquiries inquiries)
         {
+            inquiries.Status = "Pending";
             _context.Inquiries.Add(inquiries);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetInquiries", new { id = inquiries.Id }, inquiries);
+            return Ok(new {Status="Success",Message="Inquiry added successfully"});
         }
 
         // DELETE: api/Inquiries/5

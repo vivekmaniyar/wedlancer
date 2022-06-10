@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WedlancerAPI.Authorize;
 using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
@@ -24,11 +25,15 @@ namespace WedlancerAPI.Controllers
         [HttpGet("allprofiles")]
         public async Task<ActionResult<List<userdata>>> allprofiles()
         {
+            UserRoles role = await _context.UserRoles.Where(r => r.Role.RoleName == "Freelancer")
+                            .FirstOrDefaultAsync();
 
             var userprofiles = await (from p in _context.Profiles
                                       where p.IsActive == true
+                                      && p.UserRoles.FirstOrDefault().RoleId == role.RoleId
                                       select new userdata
                                       {
+                                          Id = p.ProfileId,
                                           ProfilePicture = p.ProfilePicture,
                                           UserName = p.Username,
                                           firstname = p.FirstName,
@@ -41,13 +46,61 @@ namespace WedlancerAPI.Controllers
                                           IsActive = p.IsActive
                                       }).ToListAsync();
 
-            var profiles = await _context.Profiles
-                .Include(p => p.UserRoles)
-                .Include(p => p.Category)
-                .Include(p => p.City)
-                .Include(p => p.City.State)
-                .Where(p => p.IsActive == true)
-                .ToListAsync();
+            return userprofiles;
+        }
+
+        [Authorize("Admin")]
+        [HttpGet("freelancers")]
+        public async Task<ActionResult<List<userdata>>> freelancers()
+        {
+
+            UserRoles role = await _context.UserRoles.Where(r => r.Role.RoleName == "Freelancer")
+                .FirstOrDefaultAsync();
+
+            var userprofiles = await (from p in _context.Profiles
+                                      where p.UserRoles.FirstOrDefault().RoleId == role.RoleId
+                                      select new userdata
+                                      {
+                                          Id = p.ProfileId,
+                                          ProfilePicture = p.ProfilePicture,
+                                          UserName = p.Username,
+                                          firstname = p.FirstName,
+                                          lastname = p.LastName,
+                                          Email = p.Email,
+                                          category = p.Category.CategoryName,
+                                          phonenumber = p.PhoneNumber,
+                                          city = p.City.CityName,
+                                          state = p.City.State.StateName,
+                                          IsActive = p.IsActive
+                                      }).ToListAsync();
+
+            return userprofiles;
+        }
+
+        [Authorize("Admin")]
+        [HttpGet("employers")]
+        public async Task<ActionResult<List<userdata>>> employers()
+        {
+
+            UserRoles role = await _context.UserRoles.Where(r => r.Role.RoleName == "Employeer ")
+                .FirstOrDefaultAsync();
+
+            var userprofiles = await (from p in _context.Profiles
+                                      where p.UserRoles.FirstOrDefault().RoleId == role.RoleId
+                                      select new userdata
+                                      {
+                                          Id = p.ProfileId,
+                                          ProfilePicture = p.ProfilePicture,
+                                          UserName = p.Username,
+                                          firstname = p.FirstName,
+                                          lastname = p.LastName,
+                                          Email = p.Email,
+                                          category = p.Category.CategoryName,
+                                          phonenumber = p.PhoneNumber,
+                                          city = p.City.CityName,
+                                          state = p.City.State.StateName,
+                                          IsActive = p.IsActive
+                                      }).ToListAsync();
 
             return userprofiles;
         }
@@ -74,6 +127,7 @@ namespace WedlancerAPI.Controllers
                                 && p.CategoryId == Category.CategoryId
                                 select new userdata
                                 {
+                                    Id = p.ProfileId,
                                     ProfilePicture = p.ProfilePicture,
                                     UserName = p.Username,
                                     firstname = p.FirstName,
@@ -99,6 +153,7 @@ namespace WedlancerAPI.Controllers
             var profile = await _context.Profiles.Where(p => p.Username == username && p.IsActive == true)
                 .Select(p => new userdata
                 {
+                    Id = p.ProfileId,
                     ProfilePicture = p.ProfilePicture,
                     firstname = p.FirstName,
                     lastname = p.LastName,
@@ -125,6 +180,7 @@ namespace WedlancerAPI.Controllers
             var profile = await _context.Profiles.Where(p => p.Username == username)
                 .Select(p => new userdata
                 {
+                    Id = p.ProfileId,
                     ProfilePicture = p.ProfilePicture,
                     firstname = p.FirstName,
                     lastname = p.LastName,
@@ -248,7 +304,7 @@ namespace WedlancerAPI.Controllers
             return Ok(new {Status = "Success", Message = "Profile Status Changed!" });
         }
 
-        [Authorize("Freelancer")]
+        [AuthorizeMultiplePolicy("Freelancer,Admin")]
         [HttpGet("freelancerbookings")]
         public async Task<ActionResult<List<bookingdata>>> freelancerbookings(string username)
         {
