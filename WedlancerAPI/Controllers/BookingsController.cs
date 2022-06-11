@@ -105,7 +105,6 @@ namespace WedlancerAPI.Controllers
         // POST: api/Bookings
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [Authorize("Freelancer")]
         [Authorize("Employeer")]
         [HttpPost]
         public async Task<ActionResult<bookingdata>> PostBookings(bookingdata newbooking)
@@ -126,7 +125,7 @@ namespace WedlancerAPI.Controllers
             _context.Bookings.Add(bookings);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBookings", new { status="Success", Message="Successfully booked!" });
+            return Ok( new { status="Success", Message="Successfully booked!" });
         }
 
         
