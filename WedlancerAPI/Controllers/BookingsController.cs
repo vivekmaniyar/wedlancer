@@ -118,8 +118,8 @@ namespace WedlancerAPI.Controllers
             Bookings bookings = new Bookings();
             bookings.ProfileId = freelancer.ProfileId;
             bookings.EmployerId = employer.ProfileId;
-            bookings.StartDate = newbooking.StartDate;
-            bookings.EndDate = newbooking.EndDate;
+            bookings.StartDate = newbooking.StartDate.Date;
+            bookings.EndDate = newbooking.EndDate.Date;
             bookings.Status = "Pending";
 
             _context.Bookings.Add(bookings);
