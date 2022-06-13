@@ -131,6 +131,7 @@ namespace WedlancerAPI.Controllers
                 .FirstOrDefaultAsync();
 
             Reviews reviews = new Reviews();
+            reviews.Stars = newreview.rating;
             reviews.Message = newreview.message;
             reviews.FreelancerId = freelancer.ProfileId;
             reviews.ProfileId = employer.ProfileId;
