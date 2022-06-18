@@ -10,6 +10,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class StatesController : ControllerBase
@@ -21,6 +23,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Returns all states
+        /// </summary>
+        /// <returns></returns>
         // GET: api/States
         [HttpGet]
         public async Task<ActionResult<IEnumerable<States>>> GetStates()
@@ -34,6 +40,12 @@ namespace WedlancerAPI.Controllers
                 
         }
 
+        /// <summary>
+        /// Returns a particular state
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <response code="404">State not found</response>
         // GET: api/States/5
         [HttpGet("{id}")]
         public async Task<ActionResult<States>> GetStates(int id)
@@ -55,6 +67,15 @@ namespace WedlancerAPI.Controllers
             return states;
         }
 
+        /// <summary>
+        /// Updates the state data (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">State ID not matching</response>
+        /// <response code="404">State not found</response>
         // PUT: api/States/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -88,6 +109,11 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new state (only for Admin)
+        /// </summary>
+        /// <param name="states"></param>
+        /// <returns></returns>
         // POST: api/States
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -101,6 +127,12 @@ namespace WedlancerAPI.Controllers
             return CreatedAtAction("GetStates", new { id = states.StateId }, states);
         }
 
+        /// <summary>
+        /// Deletes a states (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <response code="404">State not found</response>
         // DELETE: api/States/5
         [Authorize("Admin")]
         [HttpDelete("{id}")]
@@ -118,6 +150,12 @@ namespace WedlancerAPI.Controllers
             return states;
         }
 
+        /// <summary>
+        /// Searches for a state
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <response code="404">State not found</response>
         //GET: api/States/searchstate?name=Gujarat
         [HttpGet("searchstate")]
         public async Task<ActionResult<States>> searchstate(String name)

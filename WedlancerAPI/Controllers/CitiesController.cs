@@ -10,6 +10,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class CitiesController : ControllerBase
@@ -21,6 +23,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Returns all cities
+        /// </summary>
+        /// <returns>All cities</returns>
         // GET: api/Cities
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cities>>> GetCities()
@@ -28,6 +34,12 @@ namespace WedlancerAPI.Controllers
             return await _context.Cities.Include(c => c.State).ToListAsync();
         }
 
+        /// <summary>
+        /// Returns a single city associated with the given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Single city</returns>
+        /// <response code="404">City not found</response>
         // GET: api/Cities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Cities>> GetCities(int id)
@@ -43,6 +55,15 @@ namespace WedlancerAPI.Controllers
             return cities;
         }
 
+        /// <summary>
+        /// Updates a single city data (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cities"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">City ID is not matching</response>
+        /// <response code="404">City not found</response>
         // PUT: api/Cities/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -76,6 +97,11 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new city (only for Admin)
+        /// </summary>
+        /// <param name="cities"></param>
+        /// <returns>Newly added city</returns>
         // POST: api/Cities
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -89,6 +115,12 @@ namespace WedlancerAPI.Controllers
             return CreatedAtAction("GetCities", new { id = cities.CityId }, cities);
         }
 
+        /// <summary>
+        /// Deletes a particular city
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Deleted city data</returns>
+        /// <response code="404">City not found</response>
         // DELETE: api/Cities/5
         [Authorize("Admin")]
         [HttpDelete("{id}")]
@@ -107,6 +139,12 @@ namespace WedlancerAPI.Controllers
             return cities;
         }
 
+        /// <summary>
+        /// Searchs for the city matching the parameter 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>cities</returns>
+        /// <response code="404">City not found</response>
         //GET: api/Cities/searchcity?name=Surat 
         [HttpGet("searchcity")]
         public async Task<ActionResult<Cities>> searchcity(String name)
@@ -122,6 +160,12 @@ namespace WedlancerAPI.Controllers
             return cities;
         }
 
+        /// <summary>
+        /// Search for the cities in a particular state
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns>Cities</returns>
+        /// <response code="404">Cities not found</response>
         //GET: api/Cities/searchbystate?state=Gujarat
         [HttpGet("searchbystate")]
         public async Task<ActionResult<IEnumerable<Cities>>> searchbystate(String state)

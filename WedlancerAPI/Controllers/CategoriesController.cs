@@ -10,6 +10,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -21,6 +23,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Return all categories
+        /// </summary>
+        /// <returns>All categories</returns>
         // GET: api/Categories
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Categories>>> GetCategories()
@@ -30,6 +36,12 @@ namespace WedlancerAPI.Controllers
             return await _context.Categories.ToListAsync();
         }
 
+        /// <summary>
+        /// Returns a single category associated with the given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Single category</returns>
+        /// <response code="404">Category not found</response>
         // GET: api/Categories/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Categories>> GetCategories(int id)
@@ -46,6 +58,15 @@ namespace WedlancerAPI.Controllers
             return categories;
         }
 
+        /// <summary>
+        /// Updates a category (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="categories"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">Category ID not matching</response>
+        /// <response code="404">Category not found</response>
         // PUT: api/Categories/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -79,6 +100,11 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new category (only for Admin)
+        /// </summary>
+        /// <param name="categories"></param>
+        /// <returns>New category data</returns>
         // POST: api/Categories
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -92,6 +118,11 @@ namespace WedlancerAPI.Controllers
             return CreatedAtAction("GetCategories", new { id = categories.CategoryId }, categories);
         }
 
+        /// <summary>
+        /// Deletes a particular category (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Deleted category</returns>
         // DELETE: api/Categories/5
         [Authorize("Admin")]
         [HttpDelete("{id}")]
@@ -116,6 +147,12 @@ namespace WedlancerAPI.Controllers
             return categories;
         }
 
+        /// <summary>
+        /// Searches for categories matching the parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>categories</returns>
+        /// <response code="404">Not found</response>
         //GET: api/Categories/searchcategory?name=Photographer
         [HttpGet("searchcategory")]
         public async Task<ActionResult<Categories>> searchcategory(String name)

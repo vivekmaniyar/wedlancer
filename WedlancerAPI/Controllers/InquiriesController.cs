@@ -10,6 +10,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class InquiriesController : ControllerBase
@@ -21,6 +23,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Returns all inquiries (only for Admin)
+        /// </summary>
+        /// <returns>All inquiries</returns>
         // GET: api/Inquiries
         [Authorize("Admin")]
         [HttpGet]
@@ -29,6 +35,12 @@ namespace WedlancerAPI.Controllers
             return await _context.Inquiries.ToListAsync();
         }
 
+        /// <summary>
+        /// Returns data of a particular inquiry (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Inquiry data</returns>
+        /// <response code="404">Inquiry not found</response>
         // GET: api/Inquiries/5
         [Authorize("Admin")]
         [HttpGet("{id}")]
@@ -44,6 +56,15 @@ namespace WedlancerAPI.Controllers
             return inquiries;
         }
 
+        /// <summary>
+        /// Updates status of an inquiry (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">Inquiry ID not matching</response>
+        /// <response code="404">Inquiry not found</response>
         // PUT: api/Inquiries/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -81,6 +102,12 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new inquiry
+        /// </summary>
+        /// <param name="inquiries"></param>
+        /// <returns></returns>
+        /// <response code="200">Success</response>
         // POST: api/Inquiries
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -94,6 +121,12 @@ namespace WedlancerAPI.Controllers
             return Ok(new {Status="Success",Message="Inquiry added successfully"});
         }
 
+        /// <summary>
+        /// Deletes a particular inquiry (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Deleted inquiry</returns>
+        /// <response code="404">Inquiry not found</response>
         // DELETE: api/Inquiries/5
         [Authorize("Admin")]
         [HttpDelete("{id}")]

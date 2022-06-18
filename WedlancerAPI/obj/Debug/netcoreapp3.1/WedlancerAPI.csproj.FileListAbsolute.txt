@@ -145,3 +145,5 @@ C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\bin\Debug\netcoreapp3.1\Mic
 C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
 C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\bin\Debug\netcoreapp3.1\WedlancerAPI.xml
+C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\obj\Debug\netcoreapp3.1\WedlancerAPI.xml

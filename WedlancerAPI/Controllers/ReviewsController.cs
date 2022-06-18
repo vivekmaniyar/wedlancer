@@ -11,6 +11,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewsController : ControllerBase
@@ -22,6 +24,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Returns all reviews
+        /// </summary>
+        /// <returns></returns>
         // GET: api/Reviews
         [HttpGet]
         public async Task<ActionResult<IEnumerable<userreview>>> GetReviews()
@@ -38,6 +44,12 @@ namespace WedlancerAPI.Controllers
             return reviews;
         }
 
+        /// <summary>
+        /// Returns a particular review
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <response code="404">Review not found</response>
         // GET: api/Reviews/5
         [HttpGet("{id}")]
         public async Task<ActionResult<userreview>> GetReviews(int id)
@@ -66,6 +78,15 @@ namespace WedlancerAPI.Controllers
             return review;
         }
 
+        /// <summary>
+        /// Updates a reviews (only for Emloyer)
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="updatedreview"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">Freelancer username not matching</response>
+        /// <response code="404">Review not found</response>
         // PUT: api/Reviews/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -115,6 +136,11 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a review
+        /// </summary>
+        /// <param name="newreview"></param>
+        /// <returns></returns>
         // POST: api/Reviews
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -141,6 +167,14 @@ namespace WedlancerAPI.Controllers
             return CreatedAtAction("GetReviews", new { Status="Success", Message="New review added successfully!" });
         }
 
+        /// <summary>
+        /// Deletes a review (only for Employer)
+        /// </summary>
+        /// <param name="freelancer"></param>
+        /// <param name="employer"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="404">Review not found</response>
         // DELETE: api/Reviews/5
         [Authorize("Employeer")]
         [HttpDelete]
@@ -170,6 +204,11 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Returns all reviews given by an Employer (only for Employer)
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [Authorize("Employeer")]
         [HttpGet("reviewsbyemployer")]
         public async Task<ActionResult<IEnumerable<userreview>>> reviewsbyemployer(string username)
@@ -193,6 +232,11 @@ namespace WedlancerAPI.Controllers
             return reviews;
         }
 
+        /// <summary>
+        /// Returns all review of a Freelancer
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("freelancerreviews")]
         public async Task<ActionResult<IEnumerable<userreview>>> freelancerreviews(string username)
         {

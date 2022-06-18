@@ -11,6 +11,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProfilesController : ControllerBase
@@ -21,6 +23,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Returns all freelancer profiles
+        /// </summary>
+        /// <returns></returns>
         //GET: api/Profiles/allprofiles
         [HttpGet("allprofiles")]
         public async Task<ActionResult<List<userdata>>> allprofiles()
@@ -49,6 +55,10 @@ namespace WedlancerAPI.Controllers
             return userprofiles;
         }
 
+        /// <summary>
+        /// Returns the list of freelancer (only for Admin)
+        /// </summary>
+        /// <returns></returns>
         [Authorize("Admin")]
         [HttpGet("freelancers")]
         public async Task<ActionResult<List<userdata>>> freelancers()
@@ -77,6 +87,10 @@ namespace WedlancerAPI.Controllers
             return userprofiles;
         }
 
+        /// <summary>
+        /// Returns the list of employers
+        /// </summary>
+        /// <returns></returns>
         [Authorize("Admin")]
         [HttpGet("employers")]
         public async Task<ActionResult<List<userdata>>> employers()
@@ -105,8 +119,16 @@ namespace WedlancerAPI.Controllers
             return userprofiles;
         }
 
+        /// <summary>
+        /// Returns all freelancer profiles available in the given date range
+        /// </summary>
+        /// <param name="startdate"></param>
+        /// <param name="enddate"></param>
+        /// <param name="category"></param>
+        /// <param name="city"></param>
+        /// <returns></returns>
         //GET: api/Profiles/availableprofiles
-        //?startdate=2022-05-16T06:53:58.133Z&enddate=2022-05-16T06:53:58.133Z
+        //?startdate=2022-05-16&enddate=2022-05-16
         [HttpGet("availableprofiles")]
         public async Task<ActionResult<List<userdata>>> availableprofiles(DateTime startdate, DateTime enddate, string category, string city)
         {
@@ -151,6 +173,12 @@ namespace WedlancerAPI.Controllers
             return userprofiles;
         }
 
+        /// <summary>
+        /// Searches for profiles matching the parameter
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        /// <response code="500">User not found</response>
         [HttpGet("searchprofile")]
         public async Task<ActionResult<List<userdata>>> searchprofile(string username)
         {
@@ -178,6 +206,12 @@ namespace WedlancerAPI.Controllers
             return profile;
         }
 
+        /// <summary>
+        /// Returns profile details of a particular user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        /// <response code="500">User not found</response>
         [HttpGet("profiledetails")]
         public async Task<ActionResult<userdata>> profiledetails(string username)
         {
@@ -205,6 +239,11 @@ namespace WedlancerAPI.Controllers
             return profile;
         }
 
+        /// <summary>
+        /// Returns all portfolios of the freelancer
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("searchportfolio")]
         public async Task<ActionResult<List<freelancerportfolio>>> searchportfolio(string username)
         {
@@ -225,6 +264,14 @@ namespace WedlancerAPI.Controllers
             return portfolio;
         }
 
+        /// <summary>
+        /// Updates user profile
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="profile"></param>
+        /// <returns></returns>
+        /// <response code="200">Success</response>
+        /// <response code="404">Not found</response>
         [HttpPut("updateprofile")]
         public async Task<IActionResult> updateprofile(string username,userdata profile)
         {
@@ -279,6 +326,13 @@ namespace WedlancerAPI.Controllers
             return Ok(new { Status = "Success", Message = "Profile details Changed!" });
         }
 
+        /// <summary>
+        /// Activates or deactivates the user account (only for Admin)
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        /// <response code="200">Success</response>
+        /// <response code="500">User not found</response>
         [Authorize("Admin")]
         [HttpPut("changeaccountstatus")]
         public async Task<IActionResult> changeaccountstatus(string username)
@@ -308,6 +362,13 @@ namespace WedlancerAPI.Controllers
             return Ok(new {Status = "Success", Message = "Profile Status Changed!" });
         }
 
+        /// <summary>
+        /// Returns all booking of the freelancer (only for Freelancer and Admin)
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        /// <response code="500">Freelancer not found</response>
+        /// <response code="204">No bookings</response>
         [AuthorizeMultiplePolicy("Freelancer,Admin")]
         [HttpGet("freelancerbookings")]
         public async Task<ActionResult<List<bookingdata>>> freelancerbookings(string username)
@@ -340,6 +401,13 @@ namespace WedlancerAPI.Controllers
             return bookings;
         }
 
+        /// <summary>
+        /// Returns all bookings of an employer (only for Employer)
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        /// <response code="500">Employer not found</response>
+        /// <response code="204">No bookings</response>
         [Authorize("Employeer")]
         [HttpGet("employeerbookings")]
         public async Task<ActionResult<List<bookingdata>>> employeerbookings(string username)

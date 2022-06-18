@@ -10,6 +10,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
@@ -21,6 +23,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Returns all orders
+        /// </summary>
+        /// <returns></returns>
         // GET: api/Orders
         [HttpGet]
         public async Task<ActionResult<IEnumerable<orderdetails>>> GetOrders()
@@ -39,6 +45,12 @@ namespace WedlancerAPI.Controllers
             return orders;
         }
 
+        /// <summary>
+        /// Returns order details of a given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Order details</returns>
+        /// <response code="404">Order not found</response>
         // GET: api/Orders/5
         [HttpGet("{id}")]
         public async Task<ActionResult<orderdetails>> GetOrders(int id)
@@ -62,6 +74,11 @@ namespace WedlancerAPI.Controllers
             return orders;
         }
 
+        /// <summary>
+        /// Returns all orders of the Freelancer (only for Freelancer)
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [Authorize("Freelancer")]
         [HttpGet("freelancerorders")]
         public async Task<ActionResult<List<orderdetails>>> freelancerorders(string username)
@@ -89,6 +106,15 @@ namespace WedlancerAPI.Controllers
             return orders;
         }
 
+        /// <summary>
+        /// Updates order status (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">Order ID not matching</response>
+        /// <response code="404">Order not found</response>
         // PUT: api/Orders/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -124,6 +150,11 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new order (only for Freelancer)
+        /// </summary>
+        /// <param name="neworder"></param>
+        /// <returns></returns>
         // POST: api/Orders
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

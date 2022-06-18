@@ -15,7 +15,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
+using System.IO;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
 using WedlancerAPI.Models;
 
 namespace WedlancerAPI
@@ -86,6 +89,12 @@ namespace WedlancerAPI
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
+
+                //For description of API endpoints
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",

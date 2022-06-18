@@ -10,6 +10,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class BookingsController : ControllerBase
@@ -21,6 +23,11 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// All bookings
+        /// </summary>
+        /// <returns>All bookings</returns>
+        /// <response code="200">Success</response>
         // GET: api/Bookings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<bookingdata>>> GetBookings()
@@ -41,6 +48,13 @@ namespace WedlancerAPI.Controllers
             return bookings;
         }
 
+        /// <summary>
+        /// Displays booking data of specific booking ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Booking data</returns>
+        /// <response code="200">Success</response>
+        /// <response code="404">Booking not found</response>
         // GET: api/Bookings/5
         [HttpGet("{id}")]
         public async Task<ActionResult<bookingdata>> GetBookings(int id)
@@ -65,6 +79,15 @@ namespace WedlancerAPI.Controllers
             return bookings;
         }
 
+        /// <summary>
+        /// Updates booking status
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">Booking ID is not matching</response>
+        /// <response code="404">Booking not found</response>
         // PUT: api/Bookings/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -102,6 +125,12 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Creates a new booking (only for Employer)
+        /// </summary>
+        /// <param name="newbooking"></param>
+        /// <returns></returns>
+        /// <response code="200">Success</response>
         // POST: api/Bookings
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

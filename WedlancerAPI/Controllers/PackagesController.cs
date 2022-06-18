@@ -10,6 +10,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class PackagesController : ControllerBase
@@ -21,6 +23,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Returns all packages
+        /// </summary>
+        /// <returns>All packages</returns>
         // GET: api/Packages
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Packages>>> GetPackages()
@@ -28,6 +34,12 @@ namespace WedlancerAPI.Controllers
             return await _context.Packages.ToListAsync();
         }
 
+        /// <summary>
+        /// Returns package detail of a given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Package details</returns>
+        /// <response code="404">Package not found</response>
         // GET: api/Packages/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Packages>> GetPackages(int id)
@@ -42,6 +54,15 @@ namespace WedlancerAPI.Controllers
             return packages;
         }
 
+        /// <summary>
+        /// Updates package details (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="package"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">Package ID not matching</response>
+        /// <response code="404">Package not found</response>
         // PUT: api/Packages/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -75,6 +96,11 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new package (only for Admin)
+        /// </summary>
+        /// <param name="package"></param>
+        /// <returns></returns>
         // POST: api/Packages
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -88,6 +114,12 @@ namespace WedlancerAPI.Controllers
             return CreatedAtAction("GetPackages", new { Status="Success", Message="Package successfully added!" });
         }
 
+        /// <summary>
+        /// Deletes the package (only for Admin)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <response code="404">Package not found</response>
         // DELETE: api/Packages/5
         [Authorize("Admin")]
         [HttpDelete("{id}")]

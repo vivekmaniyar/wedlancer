@@ -145,3 +145,5 @@ C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\obj\Release\netcoreapp3.1\W
 C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\obj\Release\netcoreapp3.1\WedlancerAPI.dll
 C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\obj\Release\netcoreapp3.1\WedlancerAPI.pdb
 C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\obj\Release\netcoreapp3.1\WedlancerAPI.genruntimeconfig.cache
+C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\bin\Release\netcoreapp3.1\WedlancerAPI.xml
+C:\Users\vicky\Desktop\csharp\Wedlancer\WedlancerAPI\obj\Release\netcoreapp3.1\WedlancerAPI.xml

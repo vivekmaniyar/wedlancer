@@ -11,6 +11,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [AuthorizeMultiplePolicy("Freelancer,Employeer")]
     [Route("api/[controller]")]
     [ApiController]
@@ -23,6 +25,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Returns all messages (only for Employer and Freelancer)
+        /// </summary>
+        /// <returns>All messages</returns>
         // GET: api/Messages
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Messages>>> GetMessages()
@@ -39,6 +45,12 @@ namespace WedlancerAPI.Controllers
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// Returns a single with the given ID (only for Employer and Freelancer)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Single message</returns>
+        /// <response code="404">Message not found</response>
         // GET: api/Messages/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Messages>> GetMessages(int id)
@@ -63,7 +75,11 @@ namespace WedlancerAPI.Controllers
             return messages;
         }
 
-
+        /// <summary>
+        /// Adds a new message (only for Employer and Freelancer)
+        /// </summary>
+        /// <param name="newmessage"></param>
+        /// <returns>New message</returns>
         // POST: api/Messages
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

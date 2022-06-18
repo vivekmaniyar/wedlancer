@@ -1,0 +1,557 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WedlancerAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WedlancerAPI.Controllers.AuthController.login(WedlancerAPI.Models.login)">
+            <summary>
+            Verifies user details and returns a JWT token after successful verification
+            </summary>
+            <param name="profile"></param>
+            <returns>JWT token</returns>
+            <response code="200">Successful verification</response>
+            <response code="500">Profile is not active</response>
+            <response code="401">Wrong user details</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.AuthController.registeradmin(WedlancerAPI.Models.register)">
+            <summary>
+            Registers new admin 
+            </summary>
+            <param name="newuser"></param>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="500">Admin with the given username already exists</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.AuthController.registerfreelancer(WedlancerAPI.Models.register)">
+            <summary>
+            Registers new freelancer
+            </summary>
+            <param name="newuser"></param>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="500">Freelancer with the given username already exists</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.AuthController.registeremployeer(WedlancerAPI.Models.register)">
+            <summary>
+            Registers new employeer
+            </summary>
+            <param name="newuser"></param>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="500">Employer with the given username already exists</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.BookingsController.GetBookings">
+            <summary>
+            All bookings
+            </summary>
+            <returns>All bookings</returns>
+            <response code="200">Success</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.BookingsController.GetBookings(System.Int32)">
+            <summary>
+            Displays booking data of specific booking ID
+            </summary>
+            <param name="id"></param>
+            <returns>Booking data</returns>
+            <response code="200">Success</response>
+            <response code="404">Booking not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.BookingsController.PutBookings(System.Int32,System.String)">
+            <summary>
+            Updates booking status
+            </summary>
+            <param name="id"></param>
+            <param name="status"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">Booking ID is not matching</response>
+            <response code="404">Booking not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.BookingsController.PostBookings(WedlancerAPI.Models.bookingdata)">
+            <summary>
+            Creates a new booking (only for Employer)
+            </summary>
+            <param name="newbooking"></param>
+            <returns></returns>
+            <response code="200">Success</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CategoriesController.GetCategories">
+            <summary>
+            Return all categories
+            </summary>
+            <returns>All categories</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CategoriesController.GetCategories(System.Int32)">
+            <summary>
+            Returns a single category associated with the given ID
+            </summary>
+            <param name="id"></param>
+            <returns>Single category</returns>
+            <response code="404">Category not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CategoriesController.PutCategories(System.Int32,WedlancerAPI.Models.Categories)">
+            <summary>
+            Updates a category (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <param name="categories"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">Category ID not matching</response>
+            <response code="404">Category not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CategoriesController.PostCategories(WedlancerAPI.Models.Categories)">
+            <summary>
+            Adds a new category (only for Admin)
+            </summary>
+            <param name="categories"></param>
+            <returns>New category data</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CategoriesController.DeleteCategories(System.Int32)">
+            <summary>
+            Deletes a particular category (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <returns>Deleted category</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CategoriesController.searchcategory(System.String)">
+            <summary>
+            Searches for categories matching the parameter
+            </summary>
+            <param name="name"></param>
+            <returns>categories</returns>
+            <response code="404">Not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CitiesController.GetCities">
+            <summary>
+            Returns all cities
+            </summary>
+            <returns>All cities</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CitiesController.GetCities(System.Int32)">
+            <summary>
+            Returns a single city associated with the given ID
+            </summary>
+            <param name="id"></param>
+            <returns>Single city</returns>
+            <response code="404">City not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CitiesController.PutCities(System.Int32,WedlancerAPI.Models.Cities)">
+            <summary>
+            Updates a single city data (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <param name="cities"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">City ID is not matching</response>
+            <response code="404">City not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CitiesController.PostCities(WedlancerAPI.Models.Cities)">
+            <summary>
+            Adds a new city (only for Admin)
+            </summary>
+            <param name="cities"></param>
+            <returns>Newly added city</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CitiesController.DeleteCities(System.Int32)">
+            <summary>
+            Deletes a particular city
+            </summary>
+            <param name="id"></param>
+            <returns>Deleted city data</returns>
+            <response code="404">City not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CitiesController.searchcity(System.String)">
+            <summary>
+            Searchs for the city matching the parameter 
+            </summary>
+            <param name="name"></param>
+            <returns>cities</returns>
+            <response code="404">City not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.CitiesController.searchbystate(System.String)">
+            <summary>
+            Search for the cities in a particular state
+            </summary>
+            <param name="state"></param>
+            <returns>Cities</returns>
+            <response code="404">Cities not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.InquiriesController.GetInquiries">
+            <summary>
+            Returns all inquiries (only for Admin)
+            </summary>
+            <returns>All inquiries</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.InquiriesController.GetInquiries(System.Int32)">
+            <summary>
+            Returns data of a particular inquiry (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <returns>Inquiry data</returns>
+            <response code="404">Inquiry not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.InquiriesController.PutInquiries(System.Int32,System.String)">
+            <summary>
+            Updates status of an inquiry (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <param name="status"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">Inquiry ID not matching</response>
+            <response code="404">Inquiry not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.InquiriesController.PostInquiries(WedlancerAPI.Models.Inquiries)">
+            <summary>
+            Adds a new inquiry
+            </summary>
+            <param name="inquiries"></param>
+            <returns></returns>
+            <response code="200">Success</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.InquiriesController.DeleteInquiries(System.Int32)">
+            <summary>
+            Deletes a particular inquiry (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <returns>Deleted inquiry</returns>
+            <response code="404">Inquiry not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.MessagesController.GetMessages">
+            <summary>
+            Returns all messages (only for Employer and Freelancer)
+            </summary>
+            <returns>All messages</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.MessagesController.GetMessages(System.Int32)">
+            <summary>
+            Returns a single with the given ID (only for Employer and Freelancer)
+            </summary>
+            <param name="id"></param>
+            <returns>Single message</returns>
+            <response code="404">Message not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.MessagesController.PostMessages(WedlancerAPI.Models.chats)">
+            <summary>
+            Adds a new message (only for Employer and Freelancer)
+            </summary>
+            <param name="newmessage"></param>
+            <returns>New message</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.OrdersController.GetOrders">
+            <summary>
+            Returns all orders
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.OrdersController.GetOrders(System.Int32)">
+            <summary>
+            Returns order details of a given ID
+            </summary>
+            <param name="id"></param>
+            <returns>Order details</returns>
+            <response code="404">Order not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.OrdersController.freelancerorders(System.String)">
+            <summary>
+            Returns all orders of the Freelancer (only for Freelancer)
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.OrdersController.PutOrders(System.Int32,System.String)">
+            <summary>
+            Updates order status (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <param name="status"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">Order ID not matching</response>
+            <response code="404">Order not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.OrdersController.PostOrders(WedlancerAPI.Models.orderdetails)">
+            <summary>
+            Adds a new order (only for Freelancer)
+            </summary>
+            <param name="neworder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PackagesController.GetPackages">
+            <summary>
+            Returns all packages
+            </summary>
+            <returns>All packages</returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PackagesController.GetPackages(System.Int32)">
+            <summary>
+            Returns package detail of a given ID
+            </summary>
+            <param name="id"></param>
+            <returns>Package details</returns>
+            <response code="404">Package not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PackagesController.PutPackages(System.Int32,WedlancerAPI.Models.Packages)">
+            <summary>
+            Updates package details (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <param name="package"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">Package ID not matching</response>
+            <response code="404">Package not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PackagesController.PostPackages(WedlancerAPI.Models.Packages)">
+            <summary>
+            Adds a new package (only for Admin)
+            </summary>
+            <param name="package"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PackagesController.DeletePackages(System.Int32)">
+            <summary>
+            Deletes the package (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="404">Package not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PortfoliosController.GetPortfolio">
+            <summary>
+            Return all portfolios
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PortfoliosController.GetPortfolio(System.Int32)">
+            <summary>
+            Returns a particular portfolio
+            </summary>
+            <param name="id"></param>
+            <returns>Portfolio</returns>
+            <response code="404">Portfolio not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PortfoliosController.PutPortfolio(System.Int32,WedlancerAPI.Models.freelancerportfolio)">
+            <summary>
+            Updates the portfolio (only for Freelancer)
+            </summary>
+            <param name="id"></param>
+            <param name="updatedportfolio"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">Portfolio ID not matching</response>
+            <response code="404">Portfolio not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PortfoliosController.PostPortfolio(WedlancerAPI.Models.freelancerportfolio)">
+            <summary>
+            Adds a new portfolio (only for Freelancer)
+            </summary>
+            <param name="newportfolio"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.PortfoliosController.DeletePortfolio(System.Int32)">
+            <summary>
+            Deletes the portfolio (only for Freelancer)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="404">Portfolio not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.allprofiles">
+            <summary>
+            Returns all freelancer profiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.freelancers">
+            <summary>
+            Returns the list of freelancer (only for Admin)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.employers">
+            <summary>
+            Returns the list of employers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.availableprofiles(System.DateTime,System.DateTime,System.String,System.String)">
+            <summary>
+            Returns all freelancer profiles available in the given date range
+            </summary>
+            <param name="startdate"></param>
+            <param name="enddate"></param>
+            <param name="category"></param>
+            <param name="city"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.searchprofile(System.String)">
+            <summary>
+            Searches for profiles matching the parameter
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+            <response code="500">User not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.profiledetails(System.String)">
+            <summary>
+            Returns profile details of a particular user
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+            <response code="500">User not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.searchportfolio(System.String)">
+            <summary>
+            Returns all portfolios of the freelancer
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.updateprofile(System.String,WedlancerAPI.Models.userdata)">
+            <summary>
+            Updates user profile
+            </summary>
+            <param name="username"></param>
+            <param name="profile"></param>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="404">Not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.changeaccountstatus(System.String)">
+            <summary>
+            Activates or deactivates the user account (only for Admin)
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="500">User not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.freelancerbookings(System.String)">
+            <summary>
+            Returns all booking of the freelancer (only for Freelancer and Admin)
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+            <response code="500">Freelancer not found</response>
+            <response code="204">No bookings</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ProfilesController.employeerbookings(System.String)">
+            <summary>
+            Returns all bookings of an employer (only for Employer)
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+            <response code="500">Employer not found</response>
+            <response code="204">No bookings</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ReviewsController.GetReviews">
+            <summary>
+            Returns all reviews
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ReviewsController.GetReviews(System.Int32)">
+            <summary>
+            Returns a particular review
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="404">Review not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ReviewsController.PutReviews(System.String,WedlancerAPI.Models.userreview)">
+            <summary>
+            Updates a reviews (only for Emloyer)
+            </summary>
+            <param name="username"></param>
+            <param name="updatedreview"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">Freelancer username not matching</response>
+            <response code="404">Review not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ReviewsController.PostReviews(WedlancerAPI.Models.userreview)">
+            <summary>
+            Adds a review
+            </summary>
+            <param name="newreview"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ReviewsController.DeleteReviews(System.String,System.String)">
+            <summary>
+            Deletes a review (only for Employer)
+            </summary>
+            <param name="freelancer"></param>
+            <param name="employer"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="404">Review not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ReviewsController.reviewsbyemployer(System.String)">
+            <summary>
+            Returns all reviews given by an Employer (only for Employer)
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.ReviewsController.freelancerreviews(System.String)">
+            <summary>
+            Returns all review of a Freelancer
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.StatesController.GetStates">
+            <summary>
+            Returns all states
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.StatesController.GetStates(System.Int32)">
+            <summary>
+            Returns a particular state
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="404">State not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.StatesController.PutStates(System.Int32,WedlancerAPI.Models.States)">
+            <summary>
+            Updates the state data (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <param name="states"></param>
+            <returns></returns>
+            <response code="204">Success</response>
+            <response code="500">State ID not matching</response>
+            <response code="404">State not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.StatesController.PostStates(WedlancerAPI.Models.States)">
+            <summary>
+            Adds a new state (only for Admin)
+            </summary>
+            <param name="states"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.StatesController.DeleteStates(System.Int32)">
+            <summary>
+            Deletes a states (only for Admin)
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            <response code="404">State not found</response>
+        </member>
+        <member name="M:WedlancerAPI.Controllers.StatesController.searchstate(System.String)">
+            <summary>
+            Searches for a state
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+            <response code="404">State not found</response>
+        </member>
+    </members>
+</doc>

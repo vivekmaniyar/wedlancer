@@ -14,6 +14,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -27,7 +29,14 @@ namespace WedlancerAPI.Controllers
             _configuration = configuration;
             _context = context;
         }
-
+        /// <summary>
+        /// Verifies user details and returns a JWT token after successful verification
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <returns>JWT token</returns>
+        /// <response code="200">Successful verification</response>
+        /// <response code="500">Profile is not active</response>
+        /// <response code="401">Wrong user details</response>
         [HttpPost("login")]
         public async Task<IActionResult> login([FromBody]login profile)
         {
@@ -66,7 +75,13 @@ namespace WedlancerAPI.Controllers
             }
             return Unauthorized();
         }
-
+        /// <summary>
+        /// Registers new admin 
+        /// </summary>
+        /// <param name="newuser"></param>
+        /// <returns></returns>
+        /// <response code="200">Success</response>
+        /// <response code="500">Admin with the given username already exists</response>
         [HttpPost("registeradmin")]
         public async Task<IActionResult> registeradmin([FromBody]register newuser)
         {
@@ -116,6 +131,13 @@ namespace WedlancerAPI.Controllers
             return Ok(new { Status = "Success", Message = "Admin Successfully registered!" });
         }
 
+        /// <summary>
+        /// Registers new freelancer
+        /// </summary>
+        /// <param name="newuser"></param>
+        /// <returns></returns>
+        /// <response code="200">Success</response>
+        /// <response code="500">Freelancer with the given username already exists</response>
         [HttpPost("registerfreelancer")]
         public async Task<IActionResult> registerfreelancer([FromBody] register newuser)
         {
@@ -165,6 +187,13 @@ namespace WedlancerAPI.Controllers
             return Ok(new { Status = "Success", Message = "Freelancer Successfully registered!" });
         }
 
+        /// <summary>
+        /// Registers new employeer
+        /// </summary>
+        /// <param name="newuser"></param>
+        /// <returns></returns>
+        /// <response code="200">Success</response>
+        /// <response code="500">Employer with the given username already exists</response>
         [HttpPost("registeremployeer")]
         public async Task<IActionResult> registeremployeer([FromBody] register newuser)
         {
@@ -214,6 +243,7 @@ namespace WedlancerAPI.Controllers
             return Ok(new { Status = "Success", Message = "Employeer Successfully registered!" });
         }
 
+        //JWT token generator
         private JwtSecurityToken gettoken(List<Claim> authclaim)
         {
             var authsigningkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));

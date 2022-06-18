@@ -10,6 +10,8 @@ using WedlancerAPI.Models;
 
 namespace WedlancerAPI.Controllers
 {
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class PortfoliosController : ControllerBase
@@ -21,6 +23,10 @@ namespace WedlancerAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Return all portfolios
+        /// </summary>
+        /// <returns></returns>
         // GET: api/Portfolios
         [HttpGet]
         public async Task<ActionResult<IEnumerable<freelancerportfolio>>> GetPortfolio()
@@ -35,6 +41,12 @@ namespace WedlancerAPI.Controllers
                 }).ToListAsync();
         }
 
+        /// <summary>
+        /// Returns a particular portfolio
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Portfolio</returns>
+        /// <response code="404">Portfolio not found</response>
         // GET: api/Portfolios/5
         [HttpGet("{id}")]
         public async Task<ActionResult<freelancerportfolio>> GetPortfolio(int id)
@@ -58,6 +70,15 @@ namespace WedlancerAPI.Controllers
             return portfolio;
         }
 
+        /// <summary>
+        /// Updates the portfolio (only for Freelancer)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updatedportfolio"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="500">Portfolio ID not matching</response>
+        /// <response code="404">Portfolio not found</response>
         // PUT: api/Portfolios/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -101,6 +122,11 @@ namespace WedlancerAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new portfolio (only for Freelancer)
+        /// </summary>
+        /// <param name="newportfolio"></param>
+        /// <returns></returns>
         // POST: api/Portfolios
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -123,6 +149,13 @@ namespace WedlancerAPI.Controllers
             return CreatedAtAction("GetPortfolio", new { Status="Success",Message="Portfolio Added Successfully!" });
         }
 
+        /// <summary>
+        /// Deletes the portfolio (only for Freelancer)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <response code="204">Success</response>
+        /// <response code="404">Portfolio not found</response>
         // DELETE: api/Portfolios/5
         [Authorize("Freelancer")]
         [HttpDelete("{id}")]
