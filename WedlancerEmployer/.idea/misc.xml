@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/drawable/buttonbordershadow.xml" value="0.124" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/drawable/circle.xml" value="0.1365" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/drawable/dateedittext.xml" value="0.1" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/drawable/editext.xml" value="0.124" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/drawable/ic_logout__1_.xml" value="0.124" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/drawable/round.xml" value="0.124" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/drawable/shadow.xml" value="0.124" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_aboutus.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_available_freelancer.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_available_freelancer_portfolio.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_contactus.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_faqs.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_freelancer.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_freelancer_details.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_home.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_main.xml" value="0.144" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_mydashboard.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_profile.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_register.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_review.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/activity_review_list.xml" value="0.25" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/badge_menu.xml" value="0.24728260869565216" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/singleavailablefreelancer.xml" value="0.20427350427350427" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/singlebookingdesign.xml" value="0.25" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/singlefreelancerdesign.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/singlereviewdesign.xml" value="0.24895833333333334" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/slide_item_container.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/layout/slider.xml" value="0.22554347826086957" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
+        <entry key="..\:/ICT/Sem-2 Project/WedlancerEmployer/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.124" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

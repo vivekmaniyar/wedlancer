@@ -1,0 +1,8 @@
+package com.rd.wedlancerfreelancer.Utils;
+
+public class Config {
+
+    public static String BASE_URL = "https://res.cloudinary.com/dvml1uyhb/image/upload/";
+    public static String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibWFuYW5wIiwianRpIjoiM2IzNzE0NzAtYzZiNC00OGM0LTkzOTgtNWQwYWI0NWI0OWYyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiRnJlZWxhbmNlciIsImV4cCI6MTY1NjA3NjY2NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.Nk_RaDy6kiPd_0MAKkpgM27xJ3GVpfMfW0JeDGtnpMk";
+
+}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "334868234527",
+    "project_id": "wedlancer-employer-f1379",
+    "storage_bucket": "wedlancer-employer-f1379.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334868234527:android:aaa0f2d7f3ed165c37f02a",
+        "android_client_info": {
+          "package_name": "com.rd.wedlanceremployer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334868234527-be578vd1mq1vjqjuii09r5irokl6uplp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLTWmVVjE4-38_hea06h4uIkBbNZoQFq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334868234527-be578vd1mq1vjqjuii09r5irokl6uplp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

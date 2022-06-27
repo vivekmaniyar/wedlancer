@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hp"
+    tools:context=".FAQsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:id="@+id/firstrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/wedlancerblacklogo" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/logo"
+                    android:layout_marginTop="5dp"
+                    android:background="#e0e0e0" />
+
+                <TextView
+                    android:id="@+id/txtheading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="false"
+                    android:text="Frequently Asked Questions (FAQs)"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/firstrl"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:elevation="15dp"
+                app:cardCornerRadius="30dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/cvfirstrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp">
+
+
+                        <TextView
+                            android:id="@+id/txtque1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:clickable="false"
+                            android:text="1) What is Wedlancer?"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtans1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtque1"
+                            android:layout_marginTop="5dp"
+                            android:clickable="false"
+                            android:text="Wedlancer is an online platform where wedding photography firm owners can find freelance professionals located across India and hire them for upcoming events/ projects."
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cvsecondrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/cvfirstrl"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/txtque2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:clickable="false"
+                            android:text="2) How is Wedlancer going to help freelancers?"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtans2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtque2"
+                            android:layout_marginTop="5dp"
+                            android:clickable="false"
+                            android:text="Wedlancer is an online platform where wedding photography firm owners can find freelance professionals located across India and hire them for upcoming events/ projects.Wedlancer is a platform which brings together freelance professionals and wedding photography firms. Freelancers can showcase their portfolio on their Wedlancer profile and wedding photography firms who are always on the lookout for talented and skilled freelancers can find them on Wedlancer."
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cvthirdrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cvsecondrl"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/txtque3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:clickable="false"
+                            android:text="3) How do I create my profile on Wedlancer?"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtans3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtque3"
+                            android:layout_marginTop="5dp"
+                            android:clickable="false"
+                            android:text="It is a simple process. Visit www.wedlancer.in. On the top right you will see a link to “Sign in or Register”. Click on Register, then enter you email and password and follow the next steps."
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cvforthrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cvthirdrl"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/txtque4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:clickable="false"
+                            android:text="4) I have registered on Wedlancer, but my profile is showing as ‘pending’. How long does it take for my profile to get approved?"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtans4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtque4"
+                            android:layout_marginTop="5dp"
+                            android:clickable="false"
+                            android:text="At Wedlancer, we go through in detail every profile that gets registered with us. If you have entered all the details accurately, updated your bio and other information, it takes us a maximum of 48 hours to approve a profile."
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cvfifthrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cvforthrl"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/txtque5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:clickable="false"
+                            android:text="5) How would a photography firm owner find me on Wedlancer?"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtans5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtque5"
+                            android:layout_marginTop="5dp"
+                            android:clickable="false"
+                            android:text="Photography firms can search for freelancers by city, by category etc. based on their requirements. Once your profile is approved on Wedlancer, it will appear in these searches. If a firm sees your profile and likes your portfolio, they can contact you directly to hire you for their upcoming projects."
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cvsixthrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cvfifthrl"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/txtque6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:clickable="false"
+                            android:text="6) Will I only find freelance photographers on Wedlancer or are there any other categories of freelance professionals registered on Wedlancer?"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtans6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtque6"
+                            android:layout_marginTop="5dp"
+                            android:clickable="false"
+                            android:text="Wedlancer is currently accepting registrations from different category of freelance professionals including photographers, cinematographers, videographers, aerial cinematographers, photo editors, video editors, album designers and printers.  We are also accepting registrations from freshers who are interested in working in the wedding industry."
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cvseventhrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cvsixthrl"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/txtque7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:clickable="false"
+                            android:text="7) How can I use the Wedlancer platform effectively?"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtans7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtque7"
+                            android:layout_marginTop="5dp"
+                            android:clickable="false"
+                            android:text="Currently, we have two filters in place. Choose the type of freelance professional you want to hire. A photographer, a cinematographer, an editor and so on. Under Second filter, you can choose the geographical area from which you want that professional. Surat, Delhi, Mumbai and so on."
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cveigththrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cvseventhrl"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:id="@+id/txtque8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:clickable="false"
+                            android:text="8) Will I be able to browse through a freelancer’s portfolio and find his contact details?"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtans8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtque8"
+                            android:layout_marginTop="5dp"
+                            android:clickable="false"
+                            android:text="Once you click on a particular profile, all his/her work will be right infront of you. Right below, there is a form that you can fill to contact that freelance professional."
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
